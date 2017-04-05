@@ -1,7 +1,5 @@
-<html>
 
-<body>
-    <h1>{{title}}</h1>
+<div *ngIf="movie">
     <h2>Details of movie: </h2><br>
     <h2>{{movie.title}}</h2>
     <div><label>Id:  </label>{{movie.id}}</div>
@@ -12,6 +10,4 @@
     <div><label>Actors:  </label>{{movie.actors}}</div>
     <div><label>Description:  </label>{{movie.description}}</div>
     <div><label>Rating:  </label>{{movie.rating}}</div>
-</body>
-
-</html>
+</div>

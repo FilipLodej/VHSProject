@@ -1,0 +1,59 @@
+import { Component, OnInit } from '@angular/core';
+
+import { Movie } from './movie';
+import { MovieService } from './movie.service';
+import { Location } from '@angular/common';
+import { ActivatedRoute, Params } from '@angular/router';
+
+@Component({
+  selector: 'my-movies',
+  templateUrl: 'app/core/movies-list.component.html',
+  providers: [MovieService]
+
+})
+export class MoviesComponent implements OnInit {
+  title = 'Retro VHS';
+  movies: Movie[];
+  selectedMovie: Movie;
+  selectedEditMovie: Movie;
+  constructor(private movieService: MovieService,
+    private route: ActivatedRoute,
+    private location: Location
+  ) { }
+
+
+  onSelect(movie: Movie): void {
+    this.selectedMovie = movie;
+  }
+
+  onSelectEdit(movie: Movie): void {
+    this.selectedEditMovie = movie;
+  }
+
+  getMovies(): void {
+    this.movieService.getMovies().then(movies => this.movies = movies);
+  }
+  ngOnInit(): void {
+    this.getMovies();
+  }
+  save(): void {
+    this.movieService.update(this.selectedMovie);
+  }
+  goBack(): void {
+    this.location.back();
+  }
+  add(title: string):void{
+    title=title.trim();
+    if(!title){return;}
+    this.movieService.create(title)
+    .then(movie=>{
+      this.movies.push(movie);
+      this.selectedMovie=null;
+    })
+  }
+}
+
+
+
+
+

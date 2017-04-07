@@ -7,5 +7,6 @@ export class Movie {
     actors: string;
     description: string;
     rating: number;
+    coverUrl: string;
 
 }

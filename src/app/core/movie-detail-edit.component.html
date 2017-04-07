@@ -1,0 +1,19 @@
+<div *ngIf="movie">
+    <div><img id="cover" src="./covers/{{movie.coverUrl}}" style="width: 33%; height: 33%;" align="right" /></div>
+    <h2>{{movie.title}}</h2>
+    <div><label>Id:  </label>{{movie.id}}</div>
+    <div><label>Title:  </label></div>
+    <input [(ngModel)]="movie.title" placeholder="title" />
+    <div><label>Year:  </label></div>
+    <input [(ngModel)]="movie.year" placeholder="year" />
+    <div><label>Genre:  </label></div>
+    <input [(ngModel)]="movie.genre" placeholder="genre" />
+    <div><label>Director:  </label></div>
+    <input [(ngModel)]="movie.director" placeholder="director" />
+    <div><label>Actors:  </label></div>
+    <input [(ngModel)]="movie.actors" placeholder="actors" />
+    <div><label>Description:  </label></div>
+    <input [(ngModel)]="movie.description" placeholder="description" />
+    <div><label>Rating:  </label></div>
+    <input [(ngModel)]="movie.rating" placeholder="rating" />
+</div>

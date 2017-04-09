@@ -37,19 +37,33 @@ export class MoviesComponent implements OnInit {
     this.getMovies();
   }
   save(): void {
-    this.movieService.update(this.selectedMovie);
+    this.movieService.update(this.selectedEditMovie);
   }
   goBack(): void {
     this.location.back();
   }
-  add(title: string):void{
-    title=title.trim();
-    if(!title){return;}
+  add(title: string): void {
+    title = title.trim();
+    if (!title) { return; }
     this.movieService.create(title)
-    .then(movie=>{
-      this.movies.push(movie);
-      this.selectedMovie=null;
-    })
+      .then(movie => {
+        this.movies.push(movie);
+        this.onSelectEdit(movie);
+        this.selectedMovie = null;
+      })
+  }
+  delete(movie: Movie): void {
+    this.movieService
+      .delete(movie.id)
+      .then(() => {
+        this.movies = this.movies.filter(h => h !== movie);
+        if (this.selectedMovie === movie) { this.selectedMovie = null; }
+      });
+  }
+    rentMovie(movie: Movie, rentDate: string){
+    movie.status = "rented";
+    movie.rentDate = rentDate;
+    this.movieService.update(movie);
   }
 }
 

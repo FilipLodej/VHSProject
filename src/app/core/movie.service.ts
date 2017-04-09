@@ -50,5 +50,12 @@ export class MovieService {
         return Promise.reject(error.message || error);
     }
 
+    delete(id: number): Promise<void> {
+        const url = `${this.moviesUrl}/${id}`;
+        return this.http.delete(url, { headers: this.headers })
+            .toPromise()
+            .then(() => null)
+            .catch(this.handleError);
+    }
 }
 

@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms'; 
 import { RatingModule } from "ngx-rating";
 import { OnInit }      from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
@@ -13,10 +14,20 @@ import { MovieService } from './movie.service';
 })
 export class MovieDetailEditComponent {
     @Input() movie: Movie;
+     public myForm: FormGroup;
+
+     public GENRE={
+       CRIME: 'crime',
+       DRAMA: 'drama',
+       THRILLER: 'thriller',
+       ACTION: 'action',
+       COMEDY: 'comedy'
+     };
 
   constructor(
     private movieService: MovieService,
     private route: ActivatedRoute,
-    private location: Location
+    private location: Location,
+    private _fb: FormBuilder
   ) {}
 }

@@ -4,10 +4,10 @@
     <thead>
         <tr>
             <th>Filters: </th>
-            <th><input name="title" type="text" [(ngModel)]="term" /></th>
-            <th><input name="director" type="text" [(ngModel)]="dir" /></th>
-            <th><input name="year" type="text" [(ngModel)]="year" /></th>
-            <th><input name="genre" type="text" [(ngModel)]="genre" /></th>
+            <th><input name="title" type="text" [(ngModel)]="term" placeholder="Title" /></th>
+            <th><input name="director" type="text" [(ngModel)]="dir" placeholder="Director" /></th>
+            <th><input name="year" type="text" [(ngModel)]="year" placeholder="Year"/></th>
+            <th><input name="genre" type="text" [(ngModel)]="genre" placeholder="Genre"/></th>
         </tr>
     </thead>
     <thead>
@@ -88,9 +88,12 @@
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
-                        <label>Movie title:</label> <input id="movieTitle" type="text" name="movieTitle" minlength=4 maxlength=25
-                            required="true" placeholder="The Movie" [(ngModel)]="movieTitle">
+                        <label>Movie title:</label> <input id="titleMovie" type="text" name="movieTitle" minlength=4 maxlength=25
+                            required="true" placeholder="The Movie" [(ngModel)]="movieTitle" #titleMovie="ngModel">
                         <div class="help-block">Minimum of 4 characters, maximum 25 characters</div>
+                        <div [hidden]="titleMovie.valid || titleMovie.pristine" class="alert alert-danger">
+                            Title is mandatory
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -115,7 +118,7 @@
                     <label>Rent date: </label>
                     <input name="rentDate" type="date" class="form-control" [(ngModel)]="rentDate" required pattern="[0-9]{4}-(0[1-9]|1[012])-(0[1-9]|1[0-9]|2[0-9]|3[01])"
                         placeholder="yyyy-mm-dd" />
-                         <div class="help-block">Add the vhs rent date</div>
+                    <div class="help-block">Add the vhs rent date</div>
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-warning" (click)="rentMovie(selectedMovie, rentDate)" data-dismiss="modal" [disabled]="!rentForm.valid">Submit</button>

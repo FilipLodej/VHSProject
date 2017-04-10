@@ -16,6 +16,7 @@ export class RentedMoviesComponent implements OnInit {
     movies: Movie[];
     selectedMovie: Movie;
     selectedEditMovie: Movie;
+    returnPayment: number;
     constructor(private movieService: MovieService,
         private route: ActivatedRoute,
         private location: Location
@@ -40,6 +41,19 @@ export class RentedMoviesComponent implements OnInit {
         movie.status = "free";
         movie.rentDate = "";
         this.movieService.update(movie);
+    }
+    returnCalculator(broken: boolean, notRewind: boolean, delayed: boolean){
+        this.returnPayment=0;
+        if(broken){
+        this.returnPayment+=15;
+        }
+        if(notRewind){
+        this.returnPayment+=5;
+        }
+        if(delayed){
+        this.returnPayment+=10;
+        }
+        return this.returnPayment;
     }
 }
 

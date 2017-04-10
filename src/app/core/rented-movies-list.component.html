@@ -32,7 +32,7 @@
                 <td>{{movie.genre}}</td>
                 <td>{{movie.status}}</td>
                 <td>{{movie.rentDate}}</td>
-                <td><button class="btn btn-default" (click)="returnMovie(movie)">Return</button></td>
+                <td><button class="btn btn-default" (click)="onSelect(movie)" data-toggle="modal" data-target="#returnModal">Return</button></td>
                 <td><button class="btn btn-info" (click)="onSelect(movie)" data-toggle="modal" data-target="#myModal">Details</button></td>
             </ng-container>
         </tr>
@@ -50,6 +50,32 @@
                 <movie-detail [movie]="selectedMovie"></movie-detail>
             </div>
             <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="returnModal" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Rent payments: </h4>
+            </div>
+            <div class="modal-body">
+                <label><input type="checkbox" id="broken"  [(ngModel)]="brokenVhs">
+        Vhs is broken</label><br>
+                <label><input type="checkbox" id="rewind"  [(ngModel)]="notRewind">
+        Vhs is not rewind</label><br>
+                <label><input type="checkbox" id="delayed"  [(ngModel)]="delayed">
+        Return vhs is delayed</label><br>
+                <label>Return payment:</label>
+                <div>
+                    <p>{{returnCalculator(brokenVhs,notRewind,delayed)}}</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" (click)="returnMovie(selectedMovie)" data-dismiss="modal">Return</button>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             </div>
         </div>

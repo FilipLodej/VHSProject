@@ -47,6 +47,7 @@ export class MoviesComponent implements OnInit {
     if (!title) { return; }
     this.movieService.create(title)
       .then(movie => {
+        movie.status="free";
         this.movies.push(movie);
         this.onSelectEdit(movie);
         this.selectedMovie = null;

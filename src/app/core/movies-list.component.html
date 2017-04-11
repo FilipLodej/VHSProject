@@ -71,7 +71,6 @@
                 <movie-detail-edit [movie]="selectedEditMovie"></movie-detail-edit>
             </div>
             <div class="modal-footer">
-                <button (click)="save()" class="btn btn-success" data-dismiss="modal">Save</button>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             </div>
         </div>
@@ -88,7 +87,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
-                        <label>Movie title:</label> <input id="titleMovie" type="text" name="movieTitle" minlength=4 maxlength=25
+                        <label>Movie title:</label> <input class="form-control" id="titleMovie" type="text" name="movieTitle" minlength=4 maxlength=25
                             required="true" placeholder="The Movie" [(ngModel)]="movieTitle" #titleMovie="ngModel">
                         <div class="help-block">Minimum of 4 characters, maximum 25 characters</div>
                         <div [hidden]="titleMovie.valid || titleMovie.pristine" class="alert alert-danger">

@@ -4,6 +4,8 @@ import { Movie } from './movie';
 import { MovieService } from './movie.service';
 import { Location } from '@angular/common';
 import { ActivatedRoute, Params } from '@angular/router';
+import { BrowserModule } from "@angular/platform-browser";
+import { FormsModule } from "@angular/forms";
 
 @Component({
   selector: 'my-movies',

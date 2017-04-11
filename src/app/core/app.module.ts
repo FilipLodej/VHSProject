@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import {platformBrowserDynamic} from "@angular/platform-browser-dynamic";
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -52,3 +53,5 @@ import { RentedPipe } from './rented.pipe';
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+platformBrowserDynamic().bootstrapModule(AppModule);

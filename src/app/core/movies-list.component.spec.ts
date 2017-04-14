@@ -18,6 +18,9 @@ import { YearFilterPipe } from './year-filter.pipe';
 import { GenreFilterPipe } from './genre-filter.pipe';
 
 import { RouterTestingModule } from '@angular/router/testing';
+import { tick } from "@angular/core/testing";
+
+
 describe('MoviesComponent', () => {
   let de: DebugElement;
   let comp: MoviesComponent;
@@ -130,7 +133,6 @@ describe('MoviesComponent', () => {
     elements.forEach(element => {
       let e = element.nativeElement;
       expect('free').toBe(e.innertext);
-      expect('rented').toBeFalsy(e.innertext);
     });
 
   }));
@@ -154,6 +156,7 @@ describe('MoviesComponent', () => {
     //given
     //when
     comp.onSelect(testMovie);
+    fixture.detectChanges();
     //then
     expect(testMovie).toBe(comp.selectedMovie);
   });
@@ -161,21 +164,55 @@ describe('MoviesComponent', () => {
   it('should test onSelectEdit method', () => {
     //given
     //when
+    fixture.detectChanges();
     comp.onSelectEdit(testMovie);
+
     //then
     expect(testMovie).toBe(comp.selectedEditMovie);
   });
 
-  it('should save movie and call update method on movie service', async(() => {
+  it('should save movie and call update method on movie service', () => {
     //given
     let movieToUpdate = testMovie[2];
-    let spy = spyOn(movieService, 'update').and.returnValue(Promise.resolve(comp.onSelectEdit = movieToUpdate));
+    comp.onSelectEdit = movieToUpdate;
+    let spy = spyOn(movieService, 'update');
     //when
     comp.save();
     //then
     expect(spy.calls.any()).toBe(true, 'update called');
     expect(movieToUpdate).toBe(comp.selectedEditMovie);
-  }));
+    fixture.detectChanges();
+  });
 
+  it('should add movie and call create method on movie service', (done: any) => {
+    //given
+    let testMovieTitle = "Movie";
+    let testAddMovie = {
+      id: 5,
+      title: 'Movie',
+      year: "",
+      genre: '',
+      director: '',
+      actors: '',
+      description: '',
+      rating: 1,
+      coverUrl: '',
+      status: '',
+      rentDate: ''
+    };
+    comp.movies = testMovies;
+    fixture.detectChanges();
+    let spy = spyOn(movieService, 'create').and.returnValue(Promise.resolve(testAddMovie));
+    //when
+    comp.add(testMovieTitle);
+    //then
+    expect(spy.calls.any()).toBe(true, 'create called');
+    spy.calls.mostRecent().returnValue.then(() => {
+      fixture.detectChanges();
+      expect(4).toBe(comp.movies.length);
+      done();
+    });
+
+  });
 
 });

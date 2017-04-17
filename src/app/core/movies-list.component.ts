@@ -18,6 +18,10 @@ export class MoviesComponent implements OnInit {
   movies: Movie[];
   selectedMovie: Movie;
   selectedEditMovie: Movie;
+
+  temp: string = 'movieTitle';
+  asc: boolean = true;
+
   constructor(private movieService: MovieService,
     private route: ActivatedRoute,
     private location: Location
@@ -49,7 +53,7 @@ export class MoviesComponent implements OnInit {
     if (!title) { return; }
     this.movieService.create(title)
       .then(movie => {
-        movie.status="free";
+        movie.status = "free";
         this.movies.push(movie);
         this.onSelectEdit(movie);
         this.selectedMovie = null;
@@ -63,7 +67,7 @@ export class MoviesComponent implements OnInit {
         if (this.selectedMovie === movie) { this.selectedMovie = null; }
       });
   }
-    rentMovie(movie: Movie, rentDate: string){
+  rentMovie(movie: Movie, rentDate: string) {
     movie.status = "rented";
     movie.rentDate = rentDate;
     this.movieService.update(movie);

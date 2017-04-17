@@ -20,14 +20,14 @@
         </tr>
     </thead>
     <tbody>
-
-        <tr *ngFor="let movie of movies | titleFilter: term | directorFilter: dir | yearFilter: year | genreFilter: genre">
+        <tr *ngFor="let movie of movies | titleFilter: term | directorFilter: dir | yearFilter: year | genreFilter: genre ">
+            <!--| sort:temp:asc-->
             <ng-container *ngIf="movie.status=='free'">
-                <td>{{movie.id}}</td>
-                <td>{{movie.title}}</td>
-                <td>{{movie.director}}</td>
-                <td>{{movie.year}}</td>
-                <td>{{movie.genre}}</td>
+                <td id="id">{{movie.id}}</td>
+                <td id="title">{{movie.title}}</td>
+                <td id="director">{{movie.director}}</td>
+                <td id="year">{{movie.year}}</td>
+                <td id="genre">{{movie.genre}}</td>
                 <td id="status">{{movie.status}}</td>
                 <td><button class="btn btn-default" (click)="onSelect(movie)" data-toggle="modal" data-target="#rentMovieModal">Rent</button></td>
                 <td><button class="btn btn-info" (click)="onSelect(movie)" data-toggle="modal" data-target="#myModal">Details</button></td>

@@ -18,13 +18,6 @@ export class MovieDetailEditComponent {
   @Input() movie: Movie;
   public myForm: FormGroup;
 
-  public GENRE = {
-    CRIME: 'crime',
-    DRAMA: 'drama',
-    THRILLER: 'thriller',
-    ACTION: 'action',
-    COMEDY: 'comedy'
-  };
 
   constructor(
     private movieService: MovieService,

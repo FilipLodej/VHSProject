@@ -30,7 +30,7 @@
                 <td>{{movie.director}}</td>
                 <td>{{movie.year}}</td>
                 <td>{{movie.genre}}</td>
-                <td>{{movie.status}}</td>
+                <td id="status">{{movie.status}}</td>
                 <td>{{movie.rentDate}}</td>
                 <td><button class="btn btn-default" (click)="onSelect(movie)" data-toggle="modal" data-target="#returnModal">Return</button></td>
                 <td><button class="btn btn-info" (click)="onSelect(movie)" data-toggle="modal" data-target="#myModal">Details</button></td>

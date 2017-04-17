@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import {platformBrowserDynamic} from "@angular/platform-browser-dynamic";
+import { platformBrowserDynamic } from "@angular/platform-browser-dynamic";
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -22,6 +22,7 @@ import { DirectorFilterPipe } from './director-filter.pipe';
 import { YearFilterPipe } from './year-filter.pipe';
 import { GenreFilterPipe } from './genre-filter.pipe';
 import { RentedPipe } from './rented.pipe';
+import { ArraySortPipe } from './sort.pipe';
 
 
 
@@ -46,6 +47,7 @@ import { RentedPipe } from './rented.pipe';
     YearFilterPipe,
     GenreFilterPipe,
     RentedPipe,
+    ArraySortPipe,
     RentedMoviesComponent
 
   ],
